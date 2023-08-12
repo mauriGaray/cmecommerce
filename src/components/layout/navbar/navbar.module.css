@@ -1,0 +1,9 @@
+.logotype {
+  margin-right: 10px;
+  height: 2.5rem;
+}
+.typography {
+  display: flex;
+  border: solid black;
+  margin-right: 10px;
+}
