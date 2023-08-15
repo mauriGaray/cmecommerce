@@ -13,6 +13,9 @@ export default function ProductDetail() {
       if (products[i].id === pid) {
         item = products[i];
       }
+      {
+        /* falta .then*/
+      }
     }
 
     return () => {};
