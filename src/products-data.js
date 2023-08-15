@@ -4,7 +4,7 @@ const products = [
     name: "Pinta labial",
     productType: "Cosmetico",
     price: 3500,
-    image: "public/0.jpg",
+    image: "/0.jpg",
     stock: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
@@ -14,7 +14,7 @@ const products = [
     name: "Perfume Channel 50ml",
     productType: "Perfumería",
     price: 60000,
-    image: "public/2.jpg",
+    image: "/2.jpg",
     stock: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
@@ -24,7 +24,7 @@ const products = [
     name: "Shoes",
     productType: "Running Shoes",
     price: 35000,
-    image: "public/3.jpg",
+    image: "/3.jpg",
     stock: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
@@ -34,7 +34,7 @@ const products = [
     name: "Shoes",
     productType: "Running Shoes",
     price: 35000,
-    image: "public/4.jpg",
+    image: "/4.jpg",
     stock: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
@@ -44,7 +44,7 @@ const products = [
     name: "Shoes",
     productType: "Running Shoes",
     price: 35000,
-    image: "public/5.jpg",
+    image: "/5.jpg",
     stock: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
@@ -54,7 +54,7 @@ const products = [
     name: "Shoes",
     productType: "Running Shoes",
     price: 35000,
-    image: "public/6.jpg",
+    image: "/6.jpg",
     stock: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
@@ -64,7 +64,7 @@ const products = [
     name: "Shoes",
     productType: "Running Shoes",
     price: 35000,
-    image: "public/7.jpg",
+    image: "/7.jpg",
     stock: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
@@ -74,7 +74,7 @@ const products = [
     name: "Shoes",
     productType: "Running Shoes",
     price: 35000,
-    image: "public/8.jpg",
+    image: "/8.jpg",
     stock: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
@@ -84,7 +84,7 @@ const products = [
     name: "Shoes",
     productType: "Running Shoes",
     price: 35000,
-    image: "public/9.jpg",
+    image: "/9.jpg",
     stock: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
@@ -94,7 +94,7 @@ const products = [
     name: "Shoes",
     productType: "Running Shoes",
     price: 35000,
-    image: "public/10.jpg",
+    image: "/10.jpg",
     stock: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
@@ -104,7 +104,7 @@ const products = [
     name: "Shoes",
     productType: "Running Shoes",
     price: 35000,
-    image: "public/11.jpg",
+    image: "/11.jpg",
     stock: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
@@ -114,7 +114,7 @@ const products = [
     name: "Shoes",
     productType: "Running Shoes",
     price: 35000,
-    image: "public/12.jpg",
+    image: "/12.jpg",
     stock: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
@@ -124,7 +124,7 @@ const products = [
     name: "Shoes",
     productType: "Running Shoes",
     price: 35000,
-    image: "public/13.jpg",
+    image: "/13.jpg",
     stock: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
@@ -134,7 +134,7 @@ const products = [
     name: "Shoes",
     productType: "Running Shoes",
     price: 35000,
-    image: "public/14.jpg",
+    image: "/14.jpg",
     stock: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
@@ -144,7 +144,7 @@ const products = [
     name: "Shoes",
     productType: "Running Shoes",
     price: 35000,
-    image: "public/15.jpg",
+    image: "/15.jpg",
     stock: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
@@ -154,7 +154,7 @@ const products = [
     name: "Shoes",
     productType: "Running Shoes",
     price: 35000,
-    image: "public/16.jpg",
+    image: "/16.jpg",
     stock: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
