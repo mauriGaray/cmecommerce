@@ -1,3 +1,26 @@
-.btn {
-  margin-top: 100px;
+.background {
+  background-color: #ededed;
+  padding: 5vw;
+}
+.parent {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 13px 14px 34px -11px rgba(0, 0, 0, 0.53);
+  -webkit-box-shadow: 13px 14px 34px -11px rgba(0, 0, 0, 0.53);
+  -moz-box-shadow: 13px 14px 34px -11px rgba(0, 0, 0, 0.53);
+}
+
+.div1 {
+  margin: 2em;
+  width: 95%;
+  height: 90vh;
+  object-fit: cover;
+}
+.div2 {
+  border: grey solid;
+  margin: 2em;
 }

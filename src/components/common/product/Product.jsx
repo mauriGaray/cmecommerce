@@ -5,11 +5,11 @@ import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-
+import ShoppingCartIcon from "@mui/icons-material/AddShoppingCartRounded";
+import { IconButton } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import accounting from "accounting";
 import { Link } from "react-router-dom";
-
 import Button from "@mui/material/Button";
 
 export default function Product({ product }) {
@@ -39,6 +39,10 @@ export default function Product({ product }) {
             Ver detalles
           </Button>
         </Link>
+
+        <IconButton aria-label="cartIcon">
+          <ShoppingCartIcon color="primary" fontSize="large"></ShoppingCartIcon>
+        </IconButton>
       </CardActions>
     </Card>
   );
