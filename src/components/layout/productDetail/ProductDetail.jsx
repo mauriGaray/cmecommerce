@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import useCount from "../../hooks/useCount.jsx";
 import styles from "./productDetail.module.css";
 import { useParams } from "react-router-dom";
@@ -15,10 +15,11 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 import { Box } from "@mui/material";
+import { CartContext } from "../../../context/CartContext.jsx";
 
 export default function ProductDetail() {
   const [productSelected, setProductSelected] = useState({});
-
+  const { addToCart } = useContext(CartContext);
   const { pid } = useParams();
 
   useEffect(() => {
@@ -33,6 +34,13 @@ export default function ProductDetail() {
       .catch((err) => console.log(err));
   }, [pid]);
   let { count, decrement, increment } = useCount(0, productSelected.stock);
+  const onAdd = () => {
+    let data = {
+      ...productSelected,
+      quantity: count,
+    };
+    addToCart(data);
+  };
 
   return (
     <>
@@ -92,7 +100,10 @@ export default function ProductDetail() {
                       sx={{ border: "solid #1976d2", margin: "1em" }}>
                       COMPRAR AHORA
                     </Button>
-                    <Button size="medium" sx={{ border: "solid #1976d2" }}>
+                    <Button
+                      onClick={onAdd}
+                      size="medium"
+                      sx={{ border: "solid #1976d2" }}>
                       AGREGAR AL CARRITO
                     </Button>
                   </div>

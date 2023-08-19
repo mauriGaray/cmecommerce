@@ -9,20 +9,22 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
+import { useContext } from "react";
 
 import MenuItem from "@mui/material/MenuItem";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
+import { CartContext } from "../../../context/CartContext";
 const pages = ["About", "Contact"];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-
+  const { getTotalItems } = useContext(CartContext);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-
+  let quantity = getTotalItems();
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
@@ -31,22 +33,20 @@ function NavBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "Roboto, Helvetica, Arial, sans-serif",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}>
-            CM Company
-          </Typography>
+          <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
+            <Typography
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}>
+              CM Company
+            </Typography>
+          </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -116,8 +116,10 @@ function NavBar() {
           </Box>
 
           <IconButton sx={{ color: "white", marginLeft: "10px" }}>
-            <Badge badgeContent={4} color="secondary">
-              <ShoppingCartIcon />
+            <Badge badgeContent={quantity} color="secondary">
+              <Link to={"/checkoutpage"}>
+                <ShoppingCartIcon />
+              </Link>
             </Badge>
           </IconButton>
         </Toolbar>
