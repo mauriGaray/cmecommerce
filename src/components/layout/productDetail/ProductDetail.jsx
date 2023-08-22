@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import products from "../../../products-data";
 
 import accounting from "accounting";
-
+import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -95,10 +95,15 @@ export default function ProductDetail() {
                       <Button onClick={decrement}>-</Button>
                     </Box>
                     <Button
+                      onClick={onAdd}
                       variant="contained"
                       size="medium"
                       sx={{ border: "solid #1976d2", margin: "1em" }}>
-                      COMPRAR AHORA
+                      <Link
+                        to={"/checkoutpage"}
+                        style={{ textDecoration: "none", color: "white" }}>
+                        COMPRAR AHORA
+                      </Link>
                     </Button>
                     <Button
                       onClick={onAdd}

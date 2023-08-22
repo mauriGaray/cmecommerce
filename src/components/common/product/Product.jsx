@@ -14,7 +14,12 @@ import styles from "./product.module.css";
 
 export default function Product({ product }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card
+      sx={{
+        maxWidth: 345,
+        border: "solid grey 2px",
+      }}
+      className={styles.container}>
       <CardHeader
         title={product.name}
         subheader={product.stock > 0 ? "En stock" : "Sin stock"}

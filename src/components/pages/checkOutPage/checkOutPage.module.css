@@ -1,0 +1,13 @@
+.layout {
+  width: 100%;
+
+  display: flex;
+  gap: 16px;
+}
+
+.grow1 {
+  flex-grow: 1;
+}
+.image {
+  max-height: fit-content;
+}
