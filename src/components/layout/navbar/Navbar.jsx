@@ -112,7 +112,13 @@ function NavBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }} style={{ fontSize: "1.5rem" }}>
-            <Button sx={{ color: "white" }}>INGRESAR</Button>
+            <Button sx={{ color: "white" }}>
+              <Link
+                to={"/signIn"}
+                style={{ textDecoration: "none", color: "white" }}>
+                INGRESAR
+              </Link>{" "}
+            </Button>
           </Box>
 
           <IconButton sx={{ color: "white", marginLeft: "10px" }}>
