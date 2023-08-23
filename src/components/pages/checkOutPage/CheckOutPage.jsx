@@ -28,7 +28,7 @@ const CheckOutPage = () => {
 
   return (
     <>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{ marginTop: "5%" }}>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
           {cart.length ? (
             cart.map((product) => (
@@ -40,7 +40,6 @@ const CheckOutPage = () => {
                   backgroundColor: (theme) =>
                     theme.palette.mode === "dark" ? "#1A2027" : "#fff",
                   border: "grey solid 1px",
-                  margin: "1em",
                 }}>
                 <Grid container spacing={2}>
                   <Grid item>
@@ -128,7 +127,7 @@ const CheckOutPage = () => {
         </Grid>
         {/* right side */}
         <Grid item xs={10} sm={10} md={6} lg={6} xl={6}>
-          <Card sx={{ minWidth: 275, margin: "1em", border: "solid grey 1px" }}>
+          <Card sx={{ minWidth: 275, border: "solid grey 1px" }}>
             <CardContent>
               <Typography
                 sx={{ fontSize: 20 }}

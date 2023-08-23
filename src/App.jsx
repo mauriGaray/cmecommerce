@@ -9,6 +9,7 @@ import NavBar from "./components/layout/navbar/Navbar";
 import SignInSide from "./components/pages/signInSide/SignInSide";
 import SignUp from "./components/pages/signUp/SignUp";
 import PageNotFound from "./components/pages/pageNotFound/PageNotFound";
+import Favorites from "./components/pages/favorites/Favorites";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/" element={<Products />} />
             <Route path="*" element={<PageNotFound />} />
             <Route path="/products/:pid" element={<ProductDetail />} />
+            <Route path="/favorites" element={<Favorites />} />
           </Routes>
         </CartContextProvider>
       </BrowserRouter>

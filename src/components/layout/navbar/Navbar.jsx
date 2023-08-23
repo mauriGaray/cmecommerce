@@ -16,7 +16,9 @@ import MenuItem from "@mui/material/MenuItem";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
 import { CartContext } from "../../../context/CartContext";
-const pages = ["About", "Contact"];
+import SignInBtn from "../../common/signInBtn/SignInBtn";
+import FavoriteBtn from "../../common/favoriteBtn/FavoriteBtn";
+const pages = ["Nosotros", "Contacto", <SignInBtn />, <FavoriteBtn />];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -38,8 +40,9 @@ function NavBar() {
               sx={{
                 mr: 2,
                 display: { xs: "none", md: "flex" },
-                fontFamily: "Roboto, Helvetica, Arial, sans-serif",
-                fontWeight: 700,
+                fontFamily:
+                  "Proxima Nova, -apple-system, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif",
+                fontWeight: 1000,
                 letterSpacing: ".3rem",
                 color: "inherit",
                 textDecoration: "none",
@@ -47,7 +50,6 @@ function NavBar() {
               CM Company
             </Typography>
           </Link>
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -82,7 +84,6 @@ function NavBar() {
               ))}
             </Menu>
           </Box>
-
           <Typography
             variant="h5"
             noWrap
@@ -92,7 +93,8 @@ function NavBar() {
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+              fontFamily:
+                "Proxima Nova, -apple-system, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif",
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
@@ -109,16 +111,6 @@ function NavBar() {
                 {page}
               </Button>
             ))}
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }} style={{ fontSize: "1.5rem" }}>
-            <Button sx={{ color: "white" }}>
-              <Link
-                to={"/signIn"}
-                style={{ textDecoration: "none", color: "white" }}>
-                INGRESAR
-              </Link>{" "}
-            </Button>
           </Box>
 
           <IconButton sx={{ color: "white", marginLeft: "10px" }}>
