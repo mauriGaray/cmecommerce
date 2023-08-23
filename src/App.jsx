@@ -7,6 +7,8 @@ import CheckoutCard from "./components/common/checkoutCard/CheckoutCard";
 import CartContextProvider from "./context/CartContext";
 import NavBar from "./components/layout/navbar/Navbar";
 import SignInSide from "./components/pages/signInSide/SignInSide";
+import SignUp from "./components/pages/signUp/SignUp";
+import PageNotFound from "./components/pages/pageNotFound/PageNotFound";
 
 function App() {
   return (
@@ -17,8 +19,9 @@ function App() {
           <Routes>
             <Route path="/checkoutpage" element={<CheckOutPage />} />
             <Route path="/signIn" element={<SignInSide />} />
+            <Route path="/signUp" element={<SignUp />} />
             <Route path="/" element={<Products />} />
-            <Route path="*" element={<h1>PAGE NOT FOUND</h1>} />
+            <Route path="*" element={<PageNotFound />} />
             <Route path="/products/:pid" element={<ProductDetail />} />
           </Routes>
         </CartContextProvider>
