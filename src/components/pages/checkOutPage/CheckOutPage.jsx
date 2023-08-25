@@ -111,7 +111,7 @@ const CheckOutPage = () => {
                 <CardMedia
                   component="img"
                   height="350"
-                  image="public\File searching.svg"
+                  image="File searching.svg"
                   alt="notFoundProduct"
                 />
                 <CardActions>
@@ -143,7 +143,10 @@ const CheckOutPage = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">COMPRAR</Button>
+              <Link style={{ textDecoration: "none" }} to={"/checkout"}>
+                <Button size="small">COMPRAR</Button>
+              </Link>
+
               <Button size="small" onClick={cleanCart}>
                 VACIAR CARRITO
               </Button>

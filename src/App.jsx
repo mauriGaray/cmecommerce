@@ -26,6 +26,7 @@ function App() {
               <Route path="*" element={<PageNotFound />} />
               <Route path="/products/:pid" element={<ProductDetail />} />
               <Route path="/favorites" element={<Favorites />} />
+              <Route path="/checkout" element={<CheckoutCard />} />
             </Routes>
           </FavoritesProvider>
         </CartContextProvider>

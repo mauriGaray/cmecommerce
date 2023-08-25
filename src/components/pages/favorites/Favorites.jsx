@@ -7,9 +7,7 @@ import Product from "../../common/product/Product";
 import Typography from "@mui/material/Typography";
 import "./favorites.modules.css";
 import { useFavorites } from "../../../context/FavoritesContext";
-import NothingHere from "../../common/nothingHere/NothingHere";
-import { Container } from "@mui/material";
-import CardMedia from "@mui/material/CardMedia";
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -44,9 +42,8 @@ function Favorites() {
         </>
       ) : (
         <>
-          <Typography variant="h4" className="title">
-            Aún no tienes favoritos
-          </Typography>
+          <h1 className="title">Aún no tienes favoritos</h1>
+          <img className="image" src="\File searching.svg" alt="gif" />;
         </>
       )}
     </div>
