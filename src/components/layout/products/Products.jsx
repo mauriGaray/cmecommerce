@@ -6,6 +6,7 @@ import Grid from "@mui/material/Grid";
 import Product from "../../common/product/Product";
 import styles from "./products.module.css";
 import products from "../../../products-data.js";
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,

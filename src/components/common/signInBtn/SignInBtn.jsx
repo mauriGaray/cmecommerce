@@ -1,12 +1,12 @@
-import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const signInBtn = () => {
-  return (
-    <Link to={"/signIn"} style={{ textDecoration: "none" }}>
-      Ingresar
-    </Link>
-  );
+  const navigate = useNavigate();
+  const btnClick = () => {
+    navigate("/signIn");
+  };
+
+  return <div onClick={btnClick}>Ingresar</div>;
 };
 
 export default signInBtn;

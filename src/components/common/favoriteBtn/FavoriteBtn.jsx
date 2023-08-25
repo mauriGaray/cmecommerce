@@ -1,12 +1,18 @@
-import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+/**
+ * Renders a button component that navigates to the "/signIn" route when clicked.
+ */
 const FavoriteBtn = () => {
-  return (
-    <Link to={"/favorites"} style={{ textDecoration: "none", color: "white" }}>
-      Favoritos
-    </Link>
-  );
+  const navigate = useNavigate();
+
+  /**
+   * Handles the button click event and navigates to the "/signIn" route.
+   */
+  const handleButtonClick = () => {
+    navigate("/favorites");
+  };
+
+  return <div onClick={handleButtonClick}>Favoritos</div>;
 };
 
 export default FavoriteBtn;

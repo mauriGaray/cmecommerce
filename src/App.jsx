@@ -10,22 +10,24 @@ import SignInSide from "./components/pages/signInSide/SignInSide";
 import SignUp from "./components/pages/signUp/SignUp";
 import PageNotFound from "./components/pages/pageNotFound/PageNotFound";
 import Favorites from "./components/pages/favorites/Favorites";
-
+import { FavoritesProvider } from "./context/FavoritesContext";
 function App() {
   return (
     <>
       <BrowserRouter>
         <CartContextProvider>
-          <NavBar />
-          <Routes>
-            <Route path="/checkoutpage" element={<CheckOutPage />} />
-            <Route path="/signIn" element={<SignInSide />} />
-            <Route path="/signUp" element={<SignUp />} />
-            <Route path="/" element={<Products />} />
-            <Route path="*" element={<PageNotFound />} />
-            <Route path="/products/:pid" element={<ProductDetail />} />
-            <Route path="/favorites" element={<Favorites />} />
-          </Routes>
+          <FavoritesProvider>
+            <NavBar />
+            <Routes>
+              <Route path="/checkoutpage" element={<CheckOutPage />} />
+              <Route path="/signIn" element={<SignInSide />} />
+              <Route path="/signUp" element={<SignUp />} />
+              <Route path="/" element={<Products />} />
+              <Route path="*" element={<PageNotFound />} />
+              <Route path="/products/:pid" element={<ProductDetail />} />
+              <Route path="/favorites" element={<Favorites />} />
+            </Routes>
+          </FavoritesProvider>
         </CartContextProvider>
       </BrowserRouter>
     </>

@@ -11,8 +11,23 @@ import accounting from "accounting";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import styles from "./product.module.css";
+import { useFavorites } from "../../../context/FavoritesContext";
+import { useState } from "react";
 
 export default function Product({ product }) {
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
+  const [isFavorite, setIsFavorite] = useState(favorites.includes(product));
+  const toggleFavorite = () => {
+    if (isFavorite) {
+      setIsFavorite(false);
+      // Llama a la función para eliminar el producto de favoritos
+      removeFavorite(product);
+    } else {
+      setIsFavorite(true);
+      // Llama a la función para agregar el producto a favoritos
+      addFavorite(product);
+    }
+  };
   return (
     <Card
       sx={{
@@ -45,7 +60,11 @@ export default function Product({ product }) {
           </Button>
         </Link>
 
-        <IconButton className={styles.cardAction} aria-label="add to favorites">
+        <IconButton
+          sx={{ color: isFavorite ? "red" : "none" }}
+          className={styles.cardAction}
+          onClick={toggleFavorite}
+          aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
       </CardActions>
