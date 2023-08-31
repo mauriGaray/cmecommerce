@@ -16,6 +16,8 @@ import Typography from "@mui/material/Typography";
 
 import { Box } from "@mui/material";
 import { CartContext } from "../../../context/CartContext.jsx";
+import { collection, getDoc, doc } from "firebase/firestore";
+import { db } from "../../../firebaseConfig.js";
 
 export default function ProductDetail() {
   const [productSelected, setProductSelected] = useState({});
@@ -23,14 +25,9 @@ export default function ProductDetail() {
   const { pid } = useParams();
 
   useEffect(() => {
-    let productFound = products.find(
-      (product) => product.id === +pid
-    ); /* We got pid in a text format, so we use '+' to pass it as a number*/
-    const getProduct = new Promise((res) => {
-      res(productFound);
-    });
-    getProduct
-      .then((res) => setProductSelected(res))
+    let product = doc(collection(db, "products"), pid);
+    getDoc(product)
+      .then((res) => setProductSelected({ id: res.id, ...res.data() }))
       .catch((err) => console.log(err));
   }, [pid]);
   let { count, decrement, increment } = useCount(0, productSelected.stock);
