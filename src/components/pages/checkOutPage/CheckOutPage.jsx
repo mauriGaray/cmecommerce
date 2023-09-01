@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
-import styles from "./checkOutPage.module.css";
+
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
@@ -15,9 +14,14 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const CheckOutPage = () => {
   const { cart, cleanCart, removeById, getTotalPrice, getTotalItems } =
     useContext(CartContext);
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/checkout");
+  };
 
   const Img = styled("img")({
     margin: "auto",
@@ -143,9 +147,9 @@ const CheckOutPage = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Link style={{ textDecoration: "none" }} to={"/checkout"}>
-                <Button size="small">COMPRAR</Button>
-              </Link>
+              <Button size="small" onClick={handleClick}>
+                COMPRAR
+              </Button>
 
               <Button size="small" onClick={cleanCart}>
                 VACIAR CARRITO
