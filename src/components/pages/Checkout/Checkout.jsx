@@ -15,6 +15,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
 import Review from "./Review";
+import { db } from "../../../firebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
+import { useForm } from "react-hook-form";
 
 function Copyright() {
   return (
@@ -49,6 +52,16 @@ const theme = createTheme();
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
 
+  const { register, handleSubmit, reset, control, setValue } = useForm();
+  const onSubmit = (data) => {
+    let order = {
+      buyer: {},
+      items: [],
+      total: 0,
+    };
+    let ordersCollection = collection(db, "orders");
+    addDoc(ordersCollection, order);
+  };
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };

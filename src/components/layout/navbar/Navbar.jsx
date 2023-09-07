@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { useContext } from "react";
-
+import { CardMedia } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -36,19 +36,12 @@ function NavBar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
-            <Typography
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily:
-                  "Proxima Nova, -apple-system, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif",
-                fontWeight: 1000,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}>
-              CM Company
-            </Typography>
+            <CardMedia
+              component="img"
+              height="100"
+              image="\logoWhite.png"
+              alt="logo"
+            />
           </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -84,24 +77,7 @@ function NavBar() {
               ))}
             </Menu>
           </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily:
-                "Proxima Nova, -apple-system, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}>
-            CM
-          </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
