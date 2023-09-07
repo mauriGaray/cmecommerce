@@ -15,7 +15,7 @@ const products = [
     productType: "Perfumería",
     price: 60000,
     image: "/2.jpg",
-    stock: 10,
+    stock: 0,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nisi pariatur soluta numquam at officiis rem distinctio exercitationem, libero possimus cumque fugit ratione provident? Ipsa velit aliquam excepturi assumenda explicabo.",
   },

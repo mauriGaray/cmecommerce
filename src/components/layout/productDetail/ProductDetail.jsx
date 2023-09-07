@@ -1,12 +1,12 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import useCount from "../../hooks/useCount.jsx";
 import styles from "./productDetail.module.css";
 import { useParams } from "react-router-dom";
 import products from "../../../products-data";
 
 import accounting from "accounting";
-
+import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -15,24 +15,29 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 import { Box } from "@mui/material";
+import { CartContext } from "../../../context/CartContext.jsx";
+import { collection, getDoc, doc } from "firebase/firestore";
+import { db } from "../../../firebaseConfig.js";
 
 export default function ProductDetail() {
   const [productSelected, setProductSelected] = useState({});
-
+  const { addToCart } = useContext(CartContext);
   const { pid } = useParams();
 
   useEffect(() => {
-    let productFound = products.find(
-      (product) => product.id === +pid
-    ); /* We got pid in a text format, so we use '+' to pass it as a number*/
-    const getProduct = new Promise((res) => {
-      res(productFound);
-    });
-    getProduct
-      .then((res) => setProductSelected(res))
+    let product = doc(collection(db, "products"), pid);
+    getDoc(product)
+      .then((res) => setProductSelected({ id: res.id, ...res.data() }))
       .catch((err) => console.log(err));
   }, [pid]);
   let { count, decrement, increment } = useCount(0, productSelected.stock);
+  const onAdd = () => {
+    let data = {
+      ...productSelected,
+      quantity: count,
+    };
+    addToCart(data);
+  };
 
   return (
     <>
@@ -87,12 +92,20 @@ export default function ProductDetail() {
                       <Button onClick={decrement}>-</Button>
                     </Box>
                     <Button
+                      onClick={onAdd}
                       variant="contained"
                       size="medium"
                       sx={{ border: "solid #1976d2", margin: "1em" }}>
-                      COMPRAR AHORA
+                      <Link
+                        to={"/checkoutpage"}
+                        style={{ textDecoration: "none", color: "white" }}>
+                        COMPRAR AHORA
+                      </Link>
                     </Button>
-                    <Button size="medium" sx={{ border: "solid #1976d2" }}>
+                    <Button
+                      onClick={onAdd}
+                      size="medium"
+                      sx={{ border: "solid #1976d2" }}>
                       AGREGAR AL CARRITO
                     </Button>
                   </div>

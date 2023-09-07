@@ -9,45 +9,40 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
-
+import { useContext } from "react";
+import { CardMedia } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
-const pages = ["About", "Contact"];
+import { CartContext } from "../../../context/CartContext";
+import SignInBtn from "../../common/signInBtn/SignInBtn";
+import FavoriteBtn from "../../common/favoriteBtn/FavoriteBtn";
+const pages = ["Nosotros", "Contacto", <SignInBtn />, <FavoriteBtn />];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-
+  const { getTotalItems } = useContext(CartContext);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-
+  let quantity = getTotalItems();
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "Roboto, Helvetica, Arial, sans-serif",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}>
-            CM Company
-          </Typography>
-
+          <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
+            <CardMedia
+              component="img"
+              height="100"
+              image="\logoWhite.png"
+              alt="logo"
+            />
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -83,23 +78,6 @@ function NavBar() {
             </Menu>
           </Box>
 
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "Roboto, Helvetica, Arial, sans-serif",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}>
-            CM
-          </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
@@ -111,13 +89,11 @@ function NavBar() {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }} style={{ fontSize: "1.5rem" }}>
-            <Button sx={{ color: "white" }}>INGRESAR</Button>
-          </Box>
-
           <IconButton sx={{ color: "white", marginLeft: "10px" }}>
-            <Badge badgeContent={4} color="secondary">
-              <ShoppingCartIcon />
+            <Badge badgeContent={quantity} color="secondary">
+              <Link to={"/checkoutpage"}>
+                <ShoppingCartIcon />
+              </Link>
             </Badge>
           </IconButton>
         </Toolbar>
