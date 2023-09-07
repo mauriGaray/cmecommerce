@@ -1,4 +1,3 @@
-import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,6 +11,9 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { login } from "../../../firebaseConfig";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 
 function Copyright(props) {
   return (
@@ -21,9 +23,9 @@ function Copyright(props) {
       align="center"
       {...props}>
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="/">
         CMCompany
-      </Link>{" "}
+      </Link>
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -35,13 +37,22 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
-  const handleSubmit = (event) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  let data = {
+    email,
+    password,
+  };
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    try {
+      let response = await login(data);
+      console.log(response);
+      navigate("/");
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (
@@ -87,6 +98,8 @@ export default function SignInSide() {
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}>
               <TextField
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
                 margin="normal"
                 required
                 fullWidth
@@ -97,6 +110,8 @@ export default function SignInSide() {
                 autoFocus
               />
               <TextField
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
                 margin="normal"
                 required
                 fullWidth
