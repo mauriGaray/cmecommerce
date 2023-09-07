@@ -10,14 +10,15 @@ import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { useContext } from "react";
-import { CardMedia } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
+import uuid from "react-uuid";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
 import { CartContext } from "../../../context/CartContext";
 import SignInBtn from "../../common/signInBtn/SignInBtn";
 import FavoriteBtn from "../../common/favoriteBtn/FavoriteBtn";
+
 const pages = ["Nosotros", "Contacto", <SignInBtn />, <FavoriteBtn />];
 
 function NavBar() {
@@ -36,12 +37,7 @@ function NavBar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
-            <CardMedia
-              component="img"
-              height="100"
-              image="\logoWhite.png"
-              alt="logo"
-            />
+            CMCompany
           </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -71,8 +67,10 @@ function NavBar() {
                 display: { xs: "block", md: "none" },
               }}>
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={uuid()} onClick={handleCloseNavMenu}>
+                  <Typography component={"span"} textAlign="center">
+                    {page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -81,7 +79,7 @@ function NavBar() {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={uuid()}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}>
                 {page}

@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
+import { register } from "../../../firebaseConfig";
 function Copyright(props) {
   return (
     <Typography
@@ -32,13 +33,22 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-
-  const register = (event) => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  let data = {
+    email,
+    password,
+  };
+  let handleSubmit = async (event) => {
     event.preventDefault();
+    try {
+      let response = await register(data);
+      console.log(response);
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (
@@ -58,11 +68,7 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}>
+          <Box component="form" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -127,7 +133,7 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              onClick={register}
+              onClick={handleSubmit}
               sx={{ mt: 3, mb: 2 }}>
               Sign Up
             </Button>
