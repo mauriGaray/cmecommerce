@@ -13,6 +13,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import { register } from "../../../firebaseConfig";
+import { useNavigate } from "react-router";
 function Copyright(props) {
   return (
     <Typography
@@ -37,15 +38,19 @@ export default function SignUp() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   let data = {
     email,
     password,
+    firstName,
+    lastName,
   };
   let handleSubmit = async (event) => {
     event.preventDefault();
     try {
       let response = await register(data);
       console.log(response);
+      navigate("/");
     } catch (error) {
       alert(error);
     }

@@ -8,6 +8,7 @@ import styles from "./products.module.css";
 import { db } from "../../../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import { useState } from "react";
+import { useEffect } from "react";
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -24,17 +25,21 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Products() {
   let itemCollection = collection(db, "products");
   let [productList, setProductList] = useState([]);
-  getDocs(itemCollection)
-    .then((res) => {
-      let products = res.docs.map((elemento) => {
-        return {
-          id: elemento.id,
-          ...elemento.data(),
-        };
-      });
-      setProductList(products);
-    })
-    .catch((err) => console.log(err));
+
+  useEffect(() => {
+    getDocs(itemCollection)
+      .then((res) => {
+        let products = res.docs.map((elemento) => {
+          return {
+            id: elemento.id,
+            ...elemento.data(),
+          };
+        });
+        setProductList(products);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <Box className={styles.bg} sx={{ flexGrow: 1 }}>
       <Grid container spacing={2} className={styles.container}>
