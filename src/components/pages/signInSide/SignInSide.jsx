@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { login } from "../../../firebaseConfig";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useUser } from "../../../context/UserContext";
 
 function Copyright(props) {
   return (
@@ -40,15 +41,18 @@ export default function SignInSide() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  let data = {
+  let { logIn } = useUser();
+  let info = {
     email,
     password,
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      let response = await login(data);
+      let response = await login(info);
       console.log(response);
+      logIn(response);
+
       navigate("/");
     } catch (error) {
       alert(error);

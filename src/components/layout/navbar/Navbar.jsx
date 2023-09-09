@@ -18,10 +18,13 @@ import Badge from "@mui/material/Badge";
 import { CartContext } from "../../../context/CartContext";
 import SignInBtn from "../../common/signInBtn/SignInBtn";
 import FavoriteBtn from "../../common/favoriteBtn/FavoriteBtn";
+import { useUser } from "../../../context/UserContext";
 
 const pages = ["Nosotros", "Contacto", <SignInBtn />, <FavoriteBtn />];
 
 function NavBar() {
+  const { data, removeUser } = useUser();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const { getTotalItems } = useContext(CartContext);
   const handleOpenNavMenu = (event) => {
@@ -30,6 +33,9 @@ function NavBar() {
   let quantity = getTotalItems();
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+  const logOut = () => {
+    removeUser();
   };
 
   return (
