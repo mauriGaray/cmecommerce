@@ -42,6 +42,8 @@ export default function SignUp() {
   let data = {
     email,
     password,
+    firstName,
+    lastName,
   };
   let handleSubmit = async (event) => {
     event.preventDefault();

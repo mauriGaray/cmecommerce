@@ -8,16 +8,18 @@ export const useUser = () => {
 
 export const UserProvider = ({ children }) => {
   const [data, setData] = useState({});
+  const [log, setLog] = useState(false);
   const logIn = (user) => {
     setData(user);
+    setLog(true);
   };
 
   const logOut = (user) => {
-    setData({});
+    setLog(false);
   };
 
   return (
-    <userContext.Provider value={{ logIn, logOut, data }}>
+    <userContext.Provider value={{ log, logIn, logOut, data }}>
       {children}
     </userContext.Provider>
   );

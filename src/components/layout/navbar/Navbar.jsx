@@ -7,44 +7,60 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import { Link } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import { useContext } from "react";
+import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import uuid from "react-uuid";
-
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Badge from "@mui/material/Badge";
-import { CartContext } from "../../../context/CartContext";
+import AdbIcon from "@mui/icons-material/Adb";
 import SignInBtn from "../../common/signInBtn/SignInBtn";
-import FavoriteBtn from "../../common/favoriteBtn/FavoriteBtn";
+import FavoriteBtn from "./../../common/favoriteBtn/FavoriteBtn";
 import { useUser } from "../../../context/UserContext";
 
-const pages = ["Nosotros", "Contacto", <SignInBtn />, <FavoriteBtn />];
+const pages = ["Nosotros", "Contacto", <FavoriteBtn />];
+const settings = ["Profile", <SignInBtn />];
 
-function NavBar() {
-  const { data, removeUser } = useUser();
-
+function ResponsiveAppBar() {
+  const { log, data } = useUser();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const { getTotalItems } = useContext(CartContext);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  let quantity = getTotalItems();
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  const logOut = () => {
-    removeUser();
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
   };
 
   return (
-    <AppBar position="fixed">
+    <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
-            CMCompany
-          </Link>
+          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}>
+            LOGO
+          </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -73,19 +89,34 @@ function NavBar() {
                 display: { xs: "block", md: "none" },
               }}>
               {pages.map((page) => (
-                <MenuItem key={uuid()} onClick={handleCloseNavMenu}>
-                  <Typography component={"span"} textAlign="center">
-                    {page}
-                  </Typography>
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-
+          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "none" },
+              flexGrow: 1,
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}>
+            LOGO
+          </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
-                key={uuid()}
+                key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}>
                 {page}
@@ -93,16 +124,44 @@ function NavBar() {
             ))}
           </Box>
 
-          <IconButton sx={{ color: "white", marginLeft: "10px" }}>
-            <Badge badgeContent={quantity} color="secondary">
-              <Link to={"/checkoutpage"}>
-                <ShoppingCartIcon />
-              </Link>
-            </Badge>
-          </IconButton>
+          {log ? (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="profile" src={data.user.photoURL} />
+                </IconButton>
+              </Tooltip>
+
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}>
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          ) : (
+            <Button sx={{ my: 2, color: "white", display: "block" }}>
+              <SignInBtn />
+            </Button>
+          )}
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
-export default NavBar;
+export default ResponsiveAppBar;
