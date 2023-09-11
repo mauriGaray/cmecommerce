@@ -1,5 +1,6 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
+import { Badge } from "@mui/material";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -15,11 +16,25 @@ import AdbIcon from "@mui/icons-material/Adb";
 import SignInBtn from "../../common/signInBtn/SignInBtn";
 import FavoriteBtn from "./../../common/favoriteBtn/FavoriteBtn";
 import { useUser } from "../../../context/UserContext";
+import { Link } from "react-router-dom";
+import { CartContext } from "../../../context/CartContext";
+import { useContext } from "react";
+import { styled } from "@mui/material/styles";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const pages = ["Nosotros", "Contacto", <FavoriteBtn />];
 const settings = ["Profile", <SignInBtn />];
-
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: -2,
+    top: -2,
+    border: `2px solid white`,
+    padding: "0 4px",
+  },
+}));
 function ResponsiveAppBar() {
+  const { getTotalItems } = useContext(CartContext);
+  let totalItems = getTotalItems();
   const { log, data } = useUser();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -125,7 +140,11 @@ function ResponsiveAppBar() {
           </Box>
 
           {log ? (
-            <Box sx={{ flexGrow: 0 }}>
+            <Box sx={{ flexGrow: 0, display: "flex" }}>
+              <Typography
+                sx={{
+                  margin: "1rem",
+                }}>{`Hola ${data.user.email}!`}</Typography>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="profile" src={data.user.photoURL} />
@@ -159,6 +178,16 @@ function ResponsiveAppBar() {
               <SignInBtn />
             </Button>
           )}
+          <Link to="/checkoutpage">
+            <IconButton aria-label="cart">
+              <StyledBadge
+                badgeContent={totalItems}
+                showZero
+                sx={{ color: "white" }}>
+                <ShoppingCartIcon />
+              </StyledBadge>
+            </IconButton>
+          </Link>
         </Toolbar>
       </Container>
     </AppBar>
