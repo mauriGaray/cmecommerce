@@ -12,7 +12,7 @@ const FavoriteBtn = () => {
     navigate("/favorites");
   };
 
-  return <div onClick={handleButtonClick}>Favoritos</div>;
+  return <span onClick={handleButtonClick}>Favoritos</span>;
 };
 
 export default FavoriteBtn;

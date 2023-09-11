@@ -12,6 +12,8 @@ import Favorites from "./components/pages/favorites/Favorites";
 import { FavoritesProvider } from "./context/FavoritesContext";
 import Checkout from "./components/pages/Checkout/Checkout";
 import { UserProvider } from "./context/UserContext";
+import Drawer from "./components/common/drawer/Drawer";
+
 function App() {
   return (
     <>
@@ -26,6 +28,7 @@ function App() {
                 <Route path="/signIn" element={<SignInSide />} />
                 <Route path="/signUp" element={<SignUp />} />
                 <Route path="/" element={<Products />} />
+                <Route path="/category/:categoryName" element={<Products />} />
                 <Route path="*" element={<PageNotFound />} />
                 <Route path="/products/:pid" element={<ProductDetail />} />
                 <Route path="/favorites" element={<Favorites />} />
