@@ -12,7 +12,7 @@ import Favorites from "./components/pages/favorites/Favorites";
 import { FavoritesProvider } from "./context/FavoritesContext";
 import Checkout from "./components/pages/Checkout/Checkout";
 import { UserProvider } from "./context/UserContext";
-import Drawer from "./components/common/drawer/Drawer";
+import AddProduct from "./components/pages/addProduct/addProduct";
 
 function App() {
   return (
@@ -32,6 +32,7 @@ function App() {
                 <Route path="*" element={<PageNotFound />} />
                 <Route path="/products/:pid" element={<ProductDetail />} />
                 <Route path="/favorites" element={<Favorites />} />
+                <Route path="/addProduct" element={<AddProduct />} />
               </Routes>
             </FavoritesProvider>
           </CartContextProvider>

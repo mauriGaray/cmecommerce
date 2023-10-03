@@ -18,6 +18,8 @@ import Review from "./Review";
 import { db } from "../../../firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import { useForm } from "react-hook-form";
+import { CartContext } from "../../../context/CartContext";
+import { useContext } from "react";
 
 function Copyright() {
   return (
@@ -50,6 +52,7 @@ function getStepContent(step) {
 const theme = createTheme();
 
 export default function Checkout() {
+  const { cleanCart } = useContext(CartContext);
   const [activeStep, setActiveStep] = React.useState(0);
 
   const { register, handleSubmit, reset, control, setValue } = useForm();
