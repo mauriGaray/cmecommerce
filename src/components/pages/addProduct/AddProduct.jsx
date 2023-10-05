@@ -45,10 +45,9 @@ function AddProduct() {
               onChange={(event) => {
                 setProductType(event.target.value);
               }}>
-              <option value="General" defaultValue>
-                General
+              <option value="Electrodomésticos" defaultValue>
+                Electrodomésticos
               </option>
-              <option value="Electrodomésticos">Electrodomésticos</option>
               <option value="Muebles">Muebles</option>
               <option value="Herramientas">Herramientas</option>
               <option value="Celulares">Celulares</option>
