@@ -1,4 +1,4 @@
-import { Favorite } from "@mui/icons-material";
+import Favorite from "../components/pages/favorites/Favorites.jsx";
 import ProductDetail from "../components/layout/productDetail/ProductDetail";
 import Products from "../components/layout/products/Products";
 import Checkout from "../components/pages/Checkout/Checkout";
