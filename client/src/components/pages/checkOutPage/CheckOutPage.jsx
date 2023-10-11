@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../../../context/CartContext";
 
 import Button from "@mui/material/Button";
@@ -14,13 +14,40 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import axios from "axios";
+
 const CheckOutPage = () => {
   const { cart, cleanCart, removeById, getTotalPrice, getTotalItems } =
     useContext(CartContext);
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate("/checkout");
+
+  const [preferenceId, setPreferenceId] = useState(null);
+  initMercadoPago("TEST-7482bdab-5a81-4daa-8302-7dff0408f0a9");
+
+  const createPreference = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5173/create_preference",
+        {
+          description: "libro",
+          price: 10,
+          quantity: 1,
+          currency_id: "ARS",
+        }
+      );
+      const { id } = response.data;
+      return id;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleBuy = async () => {
+    const id = await createPreference();
+    if (id) {
+      setPreferenceId(id);
+    }
   };
 
   const Img = styled("img")({
@@ -45,7 +72,7 @@ const CheckOutPage = () => {
                     theme.palette.mode === "dark" ? "#1A2027" : "#fff",
                   border: "grey solid 1px",
                 }}>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} key={uuidv4()}>
                   <Grid item>
                     <ButtonBase sx={{ width: 128, height: 128 }}>
                       <Img alt="complex" src={product.image} />
@@ -147,9 +174,12 @@ const CheckOutPage = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small" onClick={handleClick}>
+              <Button size="small" onClick={handleBuy}>
                 COMPRAR
               </Button>
+              {preferenceId && (
+                <Wallet initialization={{ preferenceId: preferenceId }} />
+              )}
 
               <Button size="small" onClick={cleanCart}>
                 VACIAR CARRITO
