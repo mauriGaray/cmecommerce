@@ -21,15 +21,15 @@ app.post("/create_preference", (req, res) => {
   let preference = {
     items: [
       {
-        title: req.body.description,
+        title: req.body.title,
         unit_price: Number(req.body.price),
         quantity: Number(req.body.quantity),
       },
     ],
     back_urls: {
-      success: "http://localhost:5173",
-      failure: "http://localhost:5173",
-      pending: "http://localhost:5173",
+      success: "http://localhost:5173/feedback",
+      failure: "http://localhost:5173/feedback",
+      pending: "http://localhost:5173/feedback",
     },
     auto_return: "approved",
   };

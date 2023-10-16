@@ -13,42 +13,13 @@ import CardMedia from "@mui/material/CardMedia";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-import axios from "axios";
 
 const CheckOutPage = () => {
+  const navigate = useNavigate();
   const { cart, cleanCart, removeById, getTotalPrice, getTotalItems } =
     useContext(CartContext);
-
-  const [preferenceId, setPreferenceId] = useState(null);
-  initMercadoPago("TEST-7482bdab-5a81-4daa-8302-7dff0408f0a9");
-
-  const createPreference = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:5173/create_preference",
-        {
-          description: "libro",
-          price: 10,
-          quantity: 1,
-          currency_id: "ARS",
-        }
-      );
-      const { id } = response.data;
-      return id;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleBuy = async () => {
-    const id = await createPreference();
-    if (id) {
-      setPreferenceId(id);
-    }
-  };
 
   const Img = styled("img")({
     margin: "auto",
@@ -71,16 +42,17 @@ const CheckOutPage = () => {
                   backgroundColor: (theme) =>
                     theme.palette.mode === "dark" ? "#1A2027" : "#fff",
                   border: "grey solid 1px",
-                }}>
+                }}
+                key={uuidv4()}>
                 <Grid container spacing={2} key={uuidv4()}>
-                  <Grid item>
+                  <Grid item key={uuidv4()}>
                     <ButtonBase sx={{ width: 128, height: 128 }}>
                       <Img alt="complex" src={product.image} />
                     </ButtonBase>
                   </Grid>
-                  <Grid item xs={12} sm container>
+                  <Grid item xs={12} sm container key={uuidv4()}>
                     <Grid item xs container direction="column" spacing={2}>
-                      <Grid item xs>
+                      <Grid item xs key={uuidv4()}>
                         <Typography
                           gutterBottom
                           variant="subtitle1"
@@ -95,7 +67,7 @@ const CheckOutPage = () => {
                           {accounting.formatMoney(product.price)}
                         </Typography>
                       </Grid>
-                      <Grid item>
+                      <Grid item key={uuidv4()}>
                         <Typography sx={{ cursor: "pointer" }} variant="body2">
                           <DeleteIcon
                             fontSize="small"
@@ -104,7 +76,7 @@ const CheckOutPage = () => {
                         </Typography>
                       </Grid>
                     </Grid>
-                    <Grid item>
+                    <Grid item key={uuidv4()}>
                       <Typography variant="subtitle1" component="div">
                         Total:
                         {accounting.formatMoney(
@@ -130,8 +102,9 @@ const CheckOutPage = () => {
                   minWidth: 275,
                   marginTop: "1em",
                   border: "solid grey 1px",
-                }}>
-                <CardContent>
+                }}
+                key={uuidv4()}>
+                <CardContent key={uuidv4()}>
                   <Typography
                     sx={{ fontSize: 20 }}
                     color="text.secondary"
@@ -174,12 +147,13 @@ const CheckOutPage = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small" onClick={handleBuy}>
+              <Button
+                size="small"
+                onClick={() => {
+                  navigate("/review");
+                }}>
                 COMPRAR
               </Button>
-              {preferenceId && (
-                <Wallet initialization={{ preferenceId: preferenceId }} />
-              )}
 
               <Button size="small" onClick={cleanCart}>
                 VACIAR CARRITO

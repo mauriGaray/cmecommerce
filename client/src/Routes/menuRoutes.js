@@ -7,6 +7,7 @@ import PageNotFound from "../components/pages/pageNotFound/PageNotFound";
 import SignInSide from "../components/pages/signInSide/SignInSide";
 import SignUp from "../components/pages/signUp/SignUp";
 import AddProduct from "../components/pages/addProduct/addProduct";
+import Review from "../components/pages/Checkout/Review.jsx";
 
 export const menuRoutes = [
   {
@@ -63,5 +64,10 @@ export const menuRoutes = [
     id: "addProduct",
     path: "/addProduct",
     Element: AddProduct,
+  },
+  {
+    id: "review",
+    path: "/review",
+    Element: Review,
   },
 ];
