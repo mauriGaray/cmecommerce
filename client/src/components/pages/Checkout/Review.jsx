@@ -15,7 +15,7 @@ import styles from "./review.module.css";
 export default function Review() {
   const { cart, getTotalPrice, getTotalItems, getTotalQuantityById } =
     useContext(CartContext);
-  initMercadoPago("TEST-7482bdab-5a81-4daa-8302-7dff0408f0a9");
+  initMercadoPago("APP_USR-2e6d12f0-501a-48f2-851f-775c5b9a667a");
   const [preferenceId, setPreferenceId] = useState(null);
   const [status, setStatus] = useState(false);
   let products = cart;
