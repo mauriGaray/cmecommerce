@@ -42,8 +42,7 @@ export default function SignUp() {
   let data = {
     email,
     password,
-    firstName,
-    lastName,
+    displayName: `${firstName} ${lastName}`,
   };
   let handleSubmit = async (event) => {
     event.preventDefault();

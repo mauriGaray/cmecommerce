@@ -33,8 +33,6 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
@@ -144,7 +142,7 @@ export default function SignInSide() {
                 </Grid>
                 <Grid item>
                   <Link href="/signUp" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                    {"¿No tienes una cuenta? Crea una"}
                   </Link>
                 </Grid>
               </Grid>

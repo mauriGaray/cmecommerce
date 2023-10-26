@@ -7,7 +7,6 @@ import Product from "../../common/product/Product";
 import Typography from "@mui/material/Typography";
 import "./favorites.modules.css";
 import { useFavorites } from "../../../context/FavoritesContext";
-
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
