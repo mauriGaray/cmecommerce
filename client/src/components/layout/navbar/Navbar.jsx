@@ -145,7 +145,9 @@ function ResponsiveAppBar() {
               <Typography
                 sx={{
                   margin: "1rem",
-                }}>{`Hola ${data.user.email}!`}</Typography>
+                }}>{`Hola ${
+                data ? data.user.displayName : "usuario"
+              }!`}</Typography>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="profile" src={data.user.photoURL} />

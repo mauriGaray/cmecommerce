@@ -7,6 +7,7 @@ import Product from "../../common/product/Product";
 import Typography from "@mui/material/Typography";
 import "./favorites.modules.css";
 import { useFavorites } from "../../../context/FavoritesContext";
+import { useUser } from "../../../context/UserContext";
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -21,13 +22,14 @@ const Item = styled(Paper)(({ theme }) => ({
  */
 function Favorites() {
   const { favorites } = useFavorites();
+  const { data } = useUser();
 
   return (
     <div className="container">
       {favorites.length > 0 ? (
         <>
           <Typography variant="h4" className="title">
-            Estos son tus favoritos:
+            {data.user ? data.user.displayName : ""} estos son tus favoritos:
           </Typography>
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
@@ -41,7 +43,9 @@ function Favorites() {
         </>
       ) : (
         <>
-          <h1 className="title">Aún no tienes favoritos</h1>
+          <h1 className="title">
+            {data.user ? data.user.displayName : ""} aún no tienes favoritos
+          </h1>
           <img className="image" src="\File searching.svg" alt="gif" />;
         </>
       )}

@@ -11,10 +11,11 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { login } from "../../../firebaseConfig";
+import { login, loginWithGoogle } from "../../../firebaseConfig";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useUser } from "../../../context/UserContext";
+import GoogleIcon from "@mui/icons-material/Google";
 
 function Copyright(props) {
   return (
@@ -43,6 +44,18 @@ export default function SignInSide() {
   let info = {
     email,
     password,
+  };
+  const handleLoginWithGoogle = async (event) => {
+    event.preventDefault();
+    try {
+      let response = await loginWithGoogle();
+      console.log(response);
+      logIn(response);
+
+      navigate("/");
+    } catch (error) {
+      alert(error);
+    }
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -130,14 +143,24 @@ export default function SignInSide() {
               <Button
                 type="submit"
                 fullWidth
+                onClick={handleSubmit}
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}>
                 Sign In
               </Button>
+
+              <Button
+                variant="contained"
+                fullWidth
+                sx={{ mt: 0, mb: 2 }}
+                startIcon={<GoogleIcon />}
+                onClick={handleLoginWithGoogle}>
+                Iniciar sesión con Google
+              </Button>
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
-                    Forgot password?
+                    ¿Olvidaste la contraseña?
                   </Link>
                 </Grid>
                 <Grid item>

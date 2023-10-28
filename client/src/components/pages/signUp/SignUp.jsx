@@ -14,6 +14,10 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import { register } from "../../../firebaseConfig";
 import { useNavigate } from "react-router";
+import GoogleIcon from "@mui/icons-material/Google";
+import { loginWithGoogle } from "../../../firebaseConfig";
+import { useUser } from "../../../context/UserContext";
+
 function Copyright(props) {
   return (
     <Typography
@@ -38,6 +42,19 @@ export default function SignUp() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  let { logIn } = useUser();
+  const handleLoginWithGoogle = async (event) => {
+    event.preventDefault();
+    try {
+      let response = await loginWithGoogle();
+      console.log(response);
+      logIn(response);
+
+      navigate("/");
+    } catch (error) {
+      alert(error);
+    }
+  };
   const navigate = useNavigate();
   let data = {
     email,
@@ -129,7 +146,7 @@ export default function SignUp() {
                   control={
                     <Checkbox value="allowExtraEmails" color="primary" />
                   }
-                  label="I want to receive marketing promotions and updates via email."
+                  label="Quiero recibir las últimas ofertas y actualizaciones."
                 />
               </Grid>
             </Grid>
@@ -141,10 +158,19 @@ export default function SignUp() {
               sx={{ mt: 3, mb: 2 }}>
               Sign Up
             </Button>
+
+            <Button
+              variant="contained"
+              fullWidth
+              sx={{ mt: 0, mb: 2 }}
+              startIcon={<GoogleIcon />}
+              onClick={handleLoginWithGoogle}>
+              Iniciar sesión con Google
+            </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/signIn" variant="body2">
-                  Already have an account? Sign in
+                  ¿Ya tienes una cuenta? Inicia sesión
                 </Link>
               </Grid>
             </Grid>
