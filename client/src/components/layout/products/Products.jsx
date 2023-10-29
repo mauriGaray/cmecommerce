@@ -14,6 +14,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -91,21 +93,15 @@ export default function Products() {
           })}
         </Tabs>
       </Box>
-      <Box className={styles.bg} sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2} className={styles.container}>
+
+      <Box sx={{ width: "90%", height: "auto", mx: "auto", my: "1rem" }}>
+        <ImageList cols={3} gap={15}>
           {items.map((product) => (
-            <Grid
-              key={uuid()}
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              lg={3}
-              sx={{ margin: "2rem" }}>
+            <ImageListItem key={uuid()}>
               <Product key={uuid()} product={product} />
-            </Grid>
+            </ImageListItem>
           ))}
-        </Grid>
+        </ImageList>
       </Box>
     </main>
   );
